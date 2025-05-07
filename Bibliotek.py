@@ -1,5 +1,6 @@
 import pygame
 import sys
+import subprocess
 
 # Initialisiere pygame
 pygame.init()
@@ -41,7 +42,7 @@ def main():
                     selected_option = (selected_option + 1) % len(menu_options)
                 elif event.key == pygame.K_RETURN:
                     if selected_option == 0:  # Start
-                        print("Spiel starten")
+                        subprocess.run(["python", "Flappy_Jump.py"]) # C:\Bentzer\jakob\Flappy_Jump.py 
                     elif selected_option == 1:  # Optionen
                         print("Optionen öffnen")
                     elif selected_option == 2:  # Beenden
