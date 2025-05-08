@@ -12,18 +12,22 @@ pygame.display.set_caption("Hauptmenü")
 font = pygame.font.Font(None, 74)
 white = (255, 255, 255)
 black = (0, 0, 0)
-gray = (200, 200, 200)
+gray = (120, 120, 120)
+red = (255, 0, 0)
 
 # Menüoptionen
-menu_options = ["Start", "Optionen", "Beenden"]
+menu_options = ["Plane crash", "Bingo", "Snake", "Beenden"]
 selected_option = 0
 
 def draw_menu():
     screen.fill(black)
     for i, option in enumerate(menu_options):
         color = white if i == selected_option else gray
+        if selected_option == 3: # hier muss die gleiche zahl wie bei beenden stehen
+            color = red if i == selected_option else gray
+
         text = font.render(option, True, color)
-        text_rect = text.get_rect(center=(screen_width // 2, screen_height // 2 + i * 100))
+        text_rect = text.get_rect(center=(screen_width // 2, screen_height // 7 + i * 100))
         screen.blit(text, text_rect)
 
 def main():
@@ -41,13 +45,21 @@ def main():
                 elif event.key == pygame.K_DOWN:
                     selected_option = (selected_option + 1) % len(menu_options)
                 elif event.key == pygame.K_RETURN:
-                    if selected_option == 0:  # Start
-                        subprocess.run(["python", "Flappy_Jump.py"]) # C:\Bentzer\jakob\Flappy_Jump.py 
-                    elif selected_option == 1:  # Optionen
+                    
+                    if selected_option == 0:  # Plain crash
+                        subprocess.run(["python", "C:\Git\GameHub\Flappy_Jump.py"])  
+                    
+                    elif selected_option == 1:  # Bingo
+                        subprocess.run(["python", "C:\Git\GameHub\Bingo.py"])
                         print("Optionen öffnen")
-                    elif selected_option == 2:  # Beenden
+                
+                    elif selected_option == 2:  #Snake
+                        subprocess.run(["python", "C:\Git\GameHub\Snake.py"])
+
+                    elif selected_option == 3:  # Beenden
                         pygame.quit()
                         sys.exit()
+                
 
         draw_menu()
         pygame.display.flip()
