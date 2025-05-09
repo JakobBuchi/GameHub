@@ -15,7 +15,7 @@ class FlappyJump:
         self.canvas.pack()
 
         # Spielerbild laden und skalieren
-        image = Image.open("WhatsApp Bild 2025-05-05 um 15.23.00_780c9887.jpg")
+        image = Image.open(".\Plane crash\WhatsApp Bild 2025-05-05 um 15.23.00_780c9887.jpg")
         image = image.resize((40, 30))  # Spielergröße anpassen
         self.player_image = ImageTk.PhotoImage(image) 
         self.player = self.canvas.create_image(300, 200, image=self.player_image, anchor="center")

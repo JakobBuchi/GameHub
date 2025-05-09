@@ -16,14 +16,14 @@ gray = (120, 120, 120)
 red = (255, 0, 0)
 
 # Menüoptionen
-menu_options = ["Plane crash", "Bingo", "Snake", "Beenden"]
+menu_options = ["Plane crash", "Bingo", "Snake", "Space shuttle", "Beenden"]
 selected_option = 0
 
 def draw_menu():
     screen.fill(black)
     for i, option in enumerate(menu_options):
         color = white if i == selected_option else gray
-        if selected_option == 3: # hier muss die gleiche zahl wie bei beenden stehen
+        if selected_option == 4: # hier muss die gleiche zahl wie bei beenden stehen
             color = red if i == selected_option else gray
 
         text = font.render(option, True, color)
@@ -47,16 +47,19 @@ def main():
                 elif event.key == pygame.K_RETURN:
                     
                     if selected_option == 0:  # Plain crash
-                        subprocess.run(["python", "C:\Git\GameHub\Flappy_Jump.py"])  
+                        subprocess.run(["python", ".\Plane crash\Flappy_Jump.py"])  
                     
                     elif selected_option == 1:  # Bingo
-                        subprocess.run(["python", "C:\Git\GameHub\Bingo.py"])
+                        subprocess.run(["python", ".\Bingo\Bingo.py"])
                         print("Optionen öffnen")
                 
                     elif selected_option == 2:  #Snake
-                        subprocess.run(["python", "C:\Git\GameHub\Snake.py"])
+                        subprocess.run(["python", ".\Snake\Snake.py"])
 
-                    elif selected_option == 3:  # Beenden
+                    elif selected_option == 3:
+                        subprocess.run(["python", ".\Spaceshuttle\Spiel_slope.py"])
+                
+                    elif selected_option == 4:  # Beenden
                         pygame.quit()
                         sys.exit()
                 
