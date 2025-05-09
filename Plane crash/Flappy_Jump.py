@@ -9,8 +9,8 @@ class FlappyJump:
         self.root.title("Flappy Jump")
 
         # Spielfeld (Canvas) erstellen
-        self.canvas_width = 600
-        self.canvas_height = 400
+        self.canvas_width = 800 #600
+        self.canvas_height = 600 #400
         self.canvas = tk.Canvas(root, width=self.canvas_width, height=self.canvas_height, bg="#F7F7F7")
         self.canvas.pack()
 
@@ -31,7 +31,7 @@ class FlappyJump:
 
         # Hindernisse (Türme) vorbereiten
         self.towers = []
-        self.tower_spacing = 210  # Abstand zwischen den Türmen
+        self.tower_spacing = 300  # Abstand zwischen den Türmen
         self.tower_status = []  # Speichert, ob ein Turm bereits gezählt wurde
 
         for tower_num in range(4):
@@ -68,7 +68,7 @@ class FlappyJump:
         # Bewegt die Türme nach links und setzt sie neu, wenn sie den Bildschirm verlassen.
         for index, row in enumerate(self.towers):
             for rect in row:
-                self.canvas.move(rect, -5, 0)  # Bewegung nach links
+                self.canvas.move(rect, -7, 0)  # Bewegung nach links
 
                 coords = self.canvas.coords(rect)
                 if coords[2] < 0:  # Wenn rechter Rand des Rechtecks links vom Bildschirm ist
@@ -102,13 +102,6 @@ class FlappyJump:
         for i in range(60):  # Sanftes Springen (nicht ruckartig)
             self.canvas.move(self.player, 0, -1)
 
-    """def move_right(self, event):
-        #Optional: Bewegung nach rechts (nicht aktiv).
-        self.canvas.move(self.player, 30, 0)
-
-    def move_left(self, event):
-        #Optional: Bewegung nach links (nicht aktiv).
-        self.canvas.move(self.player, -30, 0)"""
 
     def fall(self):
         if not self.canvas.winfo_exists():  # Überprüfen, ob das Canvas noch existiert

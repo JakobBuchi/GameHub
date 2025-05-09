@@ -41,6 +41,7 @@ def game_over():
     play_again_text = font.render("Press R to Play Again", True, red)
     screen.blit(play_again_text, (screen_width // 2 - play_again_text.get_width() // 2, screen_height // 2 + 100))
     pygame.display.flip()
+    
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

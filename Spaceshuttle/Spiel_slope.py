@@ -53,7 +53,7 @@ high_score = 0
 
 # Countdown
 start_ticks = pygame.time.get_ticks()
-for i in range(5, 0, -1):
+for i in range(3, 0, -1):
     screen.fill(BLACK)
     text = font.render(str(i), True, WHITE)
     screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
@@ -64,8 +64,8 @@ for i in range(5, 0, -1):
 running = True
 game_over = False
 
-play_again_text = score_font.render('Play Again', True, WHITE)
-play_again_rect = play_again_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 50))
+play_again_text = score_font.render('Press R to play again', True, WHITE)
+play_again_rect = play_again_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 100))
 
 def reset_game():
     global ball_pos, objects, green_cubes, score, game_over, start_ticks
@@ -84,6 +84,13 @@ while running:
             if play_again_rect.collidepoint(event.pos):
                 reset_game()
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q:
+                pygame.quit()
+            if event.key == pygame.K_r:
+                reset_game()
+    
+    
     if not game_over:
         keys = pygame.key.get_pressed()
         if (keys[pygame.K_LEFT] and ball_pos[0] - ball_speed_x > 0) or (keys[pygame.K_a] and ball_pos[0] - ball_speed_x > 0):
@@ -145,7 +152,9 @@ while running:
 
     if game_over:
         text = font.render('Game Over', True, RED)
+        quit_text = score_font.render("Press Q to Quit", True, WHITE)
         screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
+        screen.blit(quit_text, (WIDTH // 2 - quit_text.get_width() // 2, HEIGHT // 2 + 50))
         screen.blit(play_again_text, play_again_rect)
 
     pygame.display.flip()
