@@ -51,7 +51,6 @@ def main():
                     
                     elif selected_option == 1:  # Bingo
                         subprocess.run(["python", ".\Bingo\Bingo.py"])
-                        print("Optionen öffnen")
                 
                     elif selected_option == 2:  #Snake
                         subprocess.run(["python", ".\Snake\Snake.py"])

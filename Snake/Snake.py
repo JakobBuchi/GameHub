@@ -67,18 +67,30 @@ Highscore = Score
 
 def apple_collision():
     global Highscore, circle_x, circle_y, snake
-    global Score, circle_x, circle_y, snake
+    global Score
     tolerance = 5  # Toleranzbereich für die Kollision
+
+    # Überprüfen, ob der Kopf der Schlange den Apfel berührt
     if (
         x < circle_x + radius + tolerance
         and x + rect_width > circle_x - tolerance
         and y < circle_y + radius + tolerance
         and y + rect_height > circle_y - tolerance
     ):
-        circle_x = random.randint(radius, screen_width - radius)
-        circle_y = random.randint(radius, screen_height - radius)
-        Score = Score + 1
-        
+        # Neue Position für den Apfel finden, die nicht in der Schlange liegt
+        while True:
+            circle_x = random.randint(radius, screen_width - radius)
+            circle_y = random.randint(radius, screen_height - radius)
+            # Prüfen, ob die neue Position mit der Schlange kollidiert
+            if not any(
+                segment[0] <= circle_x <= segment[0] + rect_width
+                and segment[1] <= circle_y <= segment[1] + rect_height
+                for segment in snake
+            ):
+                break
+
+        # Score erhöhen
+        Score += 1
         if Score > Highscore:
             Highscore = Score
 
@@ -146,7 +158,9 @@ while running:
     
     apple_collision()
     screen.fill(black)
+    
     pygame.draw.circle(screen, red, (circle_x, circle_y), radius)
+    
     for segment in snake:
         pygame.draw.rect(screen, green, (segment[0], segment[1], rect_width, rect_height))
 
